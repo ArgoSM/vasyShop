@@ -6,16 +6,24 @@ import "./home.css";
 function Home() {
 	const [searchTerm, setSearchTerm] = useState("");
 	const products = useSelector((state) => state.products);
+	const [tableData, setTableData] = useState(products);
 
 	useEffect(() => {
-		console.log(searchTerm);
+		setTableData(
+			products.filter((k) => k.name.toLowerCase().startsWith(searchTerm))
+		);
 	}, [searchTerm]);
 
+	useEffect(() => {
+		setTableData(products);
+	}, [products]);
+
 	return (
-		<div className='container-fluid home'>
-			<h2 className='mt-3 ml-2'>Products</h2>
-			<div className='search'>
+		<div className='home'>
+			<h2 className='pt-3 ml-2'>Products</h2>
+			<div className='search ml-2'>
 				<input
+					className='search-bar'
 					type='text'
 					placeholder='Search by name'
 					value={searchTerm}
@@ -25,8 +33,8 @@ function Home() {
 					}}
 				></input>
 			</div>
-			<div className='productList'>
-				{products.map((product) => {
+			<div className='productList mt-2'>
+				{tableData.map((product) => {
 					return <Product product={product} key={product.name} />;
 				})}
 			</div>

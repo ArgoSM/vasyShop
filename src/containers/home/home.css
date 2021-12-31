@@ -2,16 +2,24 @@
 	position: relative;
 	height: 100vh;
 	width: 100%;
-	padding: 0;
 	display: block;
-	justify-content: space-evenly;
+	padding: 0;
+	margin: 0;
 }
 
 .productList {
+	height: 80vh;
 	width: 100%;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: space-evenly;
 	overflow-y: auto;
+}
+
+.search-bar {
+	width: 90%;
+	font-size: 1.2rem;
+	border: 1px solid var(--vasy-green);
+	border-radius: 8px;
 }

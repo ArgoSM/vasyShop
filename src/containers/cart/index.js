@@ -1,10 +1,26 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import CartProduct from "../../components/cartProduct";
 import "./cart.css";
 
 function Cart() {
 	const cart = useSelector((state) => state.cart);
+	const dispatch = useDispatch();
+
+	const payHandler = () => {
+		dispatch({
+			type: "PAY",
+			payload: cart.products.map((k) => {
+				return {
+					name: k.name,
+					img: k.img,
+					price: k.price,
+					quantity: k.quantity - k.ordered,
+				};
+			}),
+		});
+	};
+
 	return (
 		<div className='cart'>
 			<h2>
@@ -20,7 +36,7 @@ function Cart() {
 				<span className='subtotal-text'>Subtotal :</span>
 				<span className='subtotal-val'>{"₹ " + cart.subtotal}</span>
 			</div>
-			<div className='pay'>
+			<div className='pay' onClick={() => payHandler()}>
 				<h4>Pay</h4>
 				<span className='pay-val'>{"₹ " + cart.subtotal}</span>
 			</div>

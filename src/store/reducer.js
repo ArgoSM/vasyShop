@@ -33,7 +33,6 @@ function reducer(state = initialState, action) {
 			let index = state.cart.products.findIndex(
 				(k) => k.name === action.payload.product[0].name
 			);
-			console.log(action.payload.product[0].name, index);
 			return {
 				products: [...state.products],
 				cart: {
@@ -67,6 +66,27 @@ function reducer(state = initialState, action) {
 					subtotal: state.cart.subtotal - action.payload.amount,
 				},
 			};
+		case "PAY":
+			console.log(state.cart);
+			fetch("https://janam.free.beeceptor.com/", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(state.cart),
+			}).then((response) => console.log(response.json()));
+			let productList = [];
+			for (let prod in state.products) {
+				let index = action.payload.findIndex(
+					(k) => k.name === state.products[prod].name
+				);
+				index < 0
+					? productList.push(state.products[prod])
+					: productList.push(action.payload[index]);
+			}
+			return {
+				products: productList,
+				cart: cart,
+			};
+
 		default:
 			return state;
 	}
