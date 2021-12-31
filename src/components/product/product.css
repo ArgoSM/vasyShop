@@ -1,0 +1,62 @@
+.prod {
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	margin: 1.5rem 0 1.5rem 0;
+	padding: 10px;
+	background: white;
+	box-shadow: 2px 2px 8px var(--vasy-shadow);
+	border-radius: 8px;
+}
+
+.prod-img {
+	height: 8rem;
+	width: 7rem;
+	border-radius: 8px;
+}
+
+.prod-text {
+	width: 9rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.price {
+	color: var(--vasy-green);
+	font-weight: 500;
+	font-size: large;
+}
+
+.quantity {
+	font-size: small;
+	font-weight: 500;
+}
+
+.add {
+	width: max-content;
+	font-size: 0.9rem;
+	padding: 2px 12px 2px 12px;
+	border-radius: 5px;
+	color: var(--vasy-green);
+	box-shadow: 2px 2px 4px var(--vasy-shadow);
+	transition: ease 0.2s;
+	cursor: pointer;
+}
+
+.add:hover {
+	background: var(--vasy-green);
+	color: white;
+}
+
+.add-clicked {
+	cursor: pointer;
+	background: var(--vasy-green);
+	color: white;
+	width: max-content;
+	font-size: 0.9rem;
+	padding: 2px 12px 2px 12px;
+	border-radius: 5px;
+	box-shadow: 2px 2px 4px var(--vasy-shadow);
+	transition: ease 0.2s;
+}
